@@ -12,7 +12,8 @@ const {
   getRoomUsers,
 } = require("./utils/users");
 //set static folder
-app.use(express.static("./public"));
+const path = require("path");
+app.use(express.static(path.join(__dirname, "public")));
 const chatName = "Chat Code";
 //Run when client connects
 io.on("connection", (socket) => {
@@ -61,7 +62,7 @@ io.on("connection", (socket) => {
   // io.emit();
 });
 
-const PORT = 5000 || process.env.PORT;
+const PORT =  process.env.PORT ||5000;
 
 server.listen(PORT, () => {
   console.log(`Server runing on port ${PORT}`);
